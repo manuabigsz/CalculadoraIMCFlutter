@@ -5,14 +5,14 @@ class ModalBottomSheet extends StatelessWidget {
   final TextEditingController pesoController;
   final TextEditingController alturaController;
   final Function onPressed;
-  final Function calcularEAdicionarAoHistorico; // Nova função
+  final Function calcularEAdicionarAoHistorico;
 
   ModalBottomSheet({
     required this.nomeController,
     required this.pesoController,
     required this.alturaController,
     required this.onPressed,
-    required this.calcularEAdicionarAoHistorico, // Nova função
+    required this.calcularEAdicionarAoHistorico,
   });
 
   @override
