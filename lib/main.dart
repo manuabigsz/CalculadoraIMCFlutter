@@ -88,47 +88,65 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 20),
+            if (historico.historicoIMC.isEmpty)
+              Padding(
+                padding: const EdgeInsets.only(left: 10, bottom: 5),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Seja bem-vindo ao projeto desenvolvido no Santander Bootcamp 2023 - Mobile com Flutter!',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             if (Classificacao != '')
               Text(
                 'Resultado do IMC:',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             if (Classificacao != '')
               Text(
                 'O IMC de ${nomeController.text} é ${resultadoIMC.toStringAsFixed(2)}',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 24,
+                ),
               ),
             if (Classificacao != '')
               Text(
-                Classificacao,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                'Classificado como $Classificacao',
+                style: TextStyle(fontSize: 24),
               ),
-            SizedBox(height: 20),
+            SizedBox(
+              height: 20,
+            ),
             if (historico.historicoIMC.isNotEmpty)
-              Text(
-                'Histórico de IMC:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            if (historico.historicoIMC.isNotEmpty)
-              Expanded(
-                child: DataTable(
-                  columns: [
-                    DataColumn(label: Text('Nome')),
-                    DataColumn(label: Text('IMC')),
-                    DataColumn(label: Text('Classificação')),
-                  ],
-                  rows: historico.historicoIMC.map((item) {
-                    var values = item.split(', ');
-                    return DataRow(
-                      cells: [
-                        DataCell(Text(values[0])),
-                        DataCell(Text(values[1])),
-                        DataCell(Text(values[2])),
-                      ],
-                    );
-                  }).toList(),
-                ),
+              Column(
+                children: [
+                  Text(
+                    'Histórico de IMC:',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  DataTable(
+                    columns: [
+                      DataColumn(label: Text('Nome')),
+                      DataColumn(label: Text('IMC')),
+                      DataColumn(label: Text('Classificação')),
+                    ],
+                    rows: historico.historicoIMC.map((item) {
+                      var values = item.split(', ');
+                      return DataRow(
+                        cells: [
+                          DataCell(Text(values[0])),
+                          DataCell(Text(values[1])),
+                          DataCell(Text(values[2])),
+                        ],
+                      );
+                    }).toList(),
+                  ),
+                ],
               ),
           ],
         ),
