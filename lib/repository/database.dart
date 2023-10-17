@@ -27,7 +27,6 @@ class DatabaseHelper {
     final path = join(await getDatabasesPath(), _databaseName);
 
     if (!kIsWeb) {
-      // Initialize the database for non-web platforms
       return await openDatabase(
         path,
         version: _databaseVersion,
@@ -37,7 +36,6 @@ class DatabaseHelper {
   }
 
   Future _onCreate(Database db, int version) async {
-    // Create the necessary tables if they don't exist
     await db.execute('''
       CREATE TABLE IMC (
         id INTEGER PRIMARY KEY,

@@ -5,8 +5,8 @@ import 'models/historico.dart';
 import 'pages/formulario_imc_modal.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
-  await DatabaseHelper.instance.initDatabase(); // Initialize the database
+  WidgetsFlutterBinding.ensureInitialized();
+  await DatabaseHelper.instance.initDatabase();
   runApp(MyApp());
 }
 
@@ -65,7 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 resultadoIMC = imc.resultadoIMC;
                 Classificacao = imc.classificacaoDoIMC;
 
-                // Save data to SQLite database
                 await DatabaseHelper.instance.insertIMC({
                   'nome': nomeController.text,
                   'peso': double.tryParse(pesoController.text) ?? 0,
@@ -162,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     );
                   }
                 }
-                return SizedBox(); // Return an empty widget if no historical data is available
+                return SizedBox();
               },
             ),
           ],
